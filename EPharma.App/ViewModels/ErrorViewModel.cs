@@ -1,6 +1,6 @@
 using System;
 
-namespace ProFarma.App.VieModels
+namespace EPharma.App.VieModels
 {
     public class ErrorViewModel
     {

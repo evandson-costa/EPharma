@@ -1,3 +1,4 @@
+using AutoMapper;
 using EPharma.Business.Interfaces;
 using EPharma.Data.Context;
 using EPharma.Data.Repository;
@@ -33,6 +34,8 @@ namespace EPharma.App
             services.AddScoped<EPharmaDbContext>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IPlanoRepository, PlanoRepository>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews();
 
