@@ -1,0 +1,9 @@
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\bin\Debug\netcoreapp3.1\EPharma.Business.deps.json
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\bin\Debug\netcoreapp3.1\EPharma.Business.dll
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\bin\Debug\netcoreapp3.1\EPharma.Business.pdb
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.AssemblyInfoInputs.cache
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.AssemblyInfo.cs
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.csproj.CoreCompileInputs.cache
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.dll
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.pdb
+C:\Users\Evandson\source\repos\EPharma\EPharma.Business\obj\Debug\netcoreapp3.1\EPharma.Business.csprojAssemblyReference.cache

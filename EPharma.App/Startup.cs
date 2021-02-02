@@ -1,6 +1,10 @@
+using EPharma.Business.Interfaces;
+using EPharma.Data.Context;
+using EPharma.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +28,16 @@ namespace EPharma.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //Add scopo de Injeção de dependencia
+            services.AddScoped<EPharmaDbContext>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IPlanoRepository, PlanoRepository>();
+
+            services.AddControllersWithViews();
+
+            services.AddDbContext<EPharmaDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
