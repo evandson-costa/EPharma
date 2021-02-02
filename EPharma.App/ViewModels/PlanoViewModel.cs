@@ -36,6 +36,8 @@ namespace EPharma.App.ViewModels
         /// <summary>
         /// Permite pessoa jurídica
         /// </summary>
-        public bool IsPJ { get; set; } 
+        [Display(Name = "Permite Pessoa Jurídica")]
+        public bool IsPJ { get; set; }   
+
     }
 }

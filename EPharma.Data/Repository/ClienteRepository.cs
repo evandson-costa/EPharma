@@ -13,6 +13,13 @@ namespace EPharma.Data.Repository
         public ClienteRepository(EPharmaDbContext context) : base(context)
         {
             
-        }            
+        }
+
+        public async Task<Cliente> ObterClientesPlanos(Guid id)
+        {
+            return await Db.Clientes.AsNoTracking()
+                .Include(c => c.Planos)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

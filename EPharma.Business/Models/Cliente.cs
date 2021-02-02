@@ -7,6 +7,12 @@ namespace EPharma.Business.Models
 {
     public class Cliente : Entity
     {
+
+        public Cliente()
+        {
+            Planos = new HashSet<Plano>();
+        }
+
         /// <summary>
         /// Nome do cliente
         /// </summary>
@@ -42,7 +48,7 @@ namespace EPharma.Business.Models
         /// </summary>
         public string Email { get; set; }        
 
-        /* EF Relations */
+        ///* EF Relations */
         public IEnumerable<Plano> Planos { get; set; }
     }
 }

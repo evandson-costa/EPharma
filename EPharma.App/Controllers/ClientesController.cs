@@ -3,6 +3,7 @@ using EPharma.App.ViewModels;
 using EPharma.Business.Interfaces;
 using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,13 @@ namespace EPharma.App.Controllers
         {
             return View(await ObterClientePorId(id));
         }
+     
+        public async Task<IActionResult> Create()
+        {    
+            return View();
+        }
 
+        [HttpPost]
         public async Task<IActionResult> Create(ClienteViewModel clienteViewModel)
         {
             if (!ModelState.IsValid) 
@@ -90,9 +97,28 @@ namespace EPharma.App.Controllers
             return View(clienteViewModel);
         }
 
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            var fornecedor = await ObterClientePorId(id);
+
+            if (fornecedor == null) return NotFound();
+
+            await _clienteRepository.Remover(id);
+
+            return RedirectToAction("Index");
+        }
+
         private async Task<ClienteViewModel> ObterClientePorId(Guid id)
         {
             return _mapper.Map<ClienteViewModel>(await _clienteRepository.ObterPorId(id));
+        }
+
+        private async Task<ClienteViewModel> PopularPlanos(ClienteViewModel cliente)
+        {
+            cliente.Planos = _mapper.Map<IEnumerable<PlanoViewModel>>(await _planoRepository.ObterPlanos((TipoCliente)cliente.TipoCliente));
+
+            return cliente;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EPharma.App.ViewModels;
 using EPharma.Business.Interfaces;
+using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace EPharma.App.Controllers
             return View(planoViewModel);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }     
@@ -55,7 +56,7 @@ namespace EPharma.App.Controllers
             if (!ModelState.IsValid) 
                 return View(planoViewModel);
 
-            //await _planoService.Adicionar(_mapper.Map<Produto>(planoViewModel));
+            await _planoRepository.Adicionar(_mapper.Map<Plano>(planoViewModel));
 
            // if (!OperacaoValida()) return View(planoViewModel);
 

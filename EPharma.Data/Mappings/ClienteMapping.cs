@@ -7,8 +7,7 @@ namespace EPharma.Data.Mappings
     public class ClienteMapping : IEntityTypeConfiguration<Cliente>
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
-        {
-            builder.ToTable("Clientes");
+        {    
 
             builder.HasKey(p => p.Id);
 
@@ -35,9 +34,11 @@ namespace EPharma.Data.Mappings
             builder.Property(p => p.DataNascimento)
                 .IsRequired();
 
-            builder.HasMany(p => p.Planos)
-                .WithOne(p => p.Cliente)
-                .HasForeignKey(p => p.ClienteId);
+            //builder.HasMany(p => p.Planos)
+            //    .WithOne(c => c.Cliente)
+            //    .HasForeignKey(c => c.ClienteId);
+
+            builder.ToTable("Clientes");
         }
     }
 }

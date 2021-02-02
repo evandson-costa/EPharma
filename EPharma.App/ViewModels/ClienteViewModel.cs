@@ -54,6 +54,10 @@ namespace EPharma.App.ViewModels
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido...")]
         public string Email { get; set; }
 
+        [DisplayName("Plano de Saúde")]
+        public Guid PlanoId { get; set; }
+        public PlanoViewModel Plano { get; set; }
+
         public IEnumerable<PlanoViewModel> Planos { get; set; }
     }
 }

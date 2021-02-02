@@ -15,6 +15,20 @@ namespace EPharma.Data.Repository
             : base (context)
         {
         }
-               
+
+        public async Task<IEnumerable<Plano>> ObterPlanos(TipoCliente tipoPessoa = TipoCliente.PessoaFisica)
+        {
+            if(tipoPessoa.Equals(TipoCliente.PessoaJuridica))
+            {
+                return await Db.Planos.AsNoTracking()
+                    .OrderBy(p => p.NomePlano)
+                    .Where(c => c.IsPJ == true)
+                    .ToListAsync();
+            }
+
+            return await Db.Planos.AsNoTracking()
+                   .OrderBy(p => p.NomePlano)
+                   .ToListAsync();
+        }
     }
 }

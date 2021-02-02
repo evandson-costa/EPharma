@@ -65,7 +65,7 @@ namespace EPharma.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClienteId")
+                    b.Property<Guid?>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCadastro")
@@ -96,8 +96,7 @@ namespace EPharma.Data.Migrations
                 {
                     b.HasOne("EPharma.Business.Models.Cliente", "Cliente")
                         .WithMany("Planos")
-                        .HasForeignKey("ClienteId")
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
 
                     b.Navigation("Cliente");
                 });

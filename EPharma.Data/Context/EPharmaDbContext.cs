@@ -19,6 +19,11 @@ namespace EPharma.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Cliente>()
+                .HasMany(t=>t.Planos)
+                .WithOne(c => c.Cliente);
+
             // seta tamanho maximo de um item mapeado como varchar 100
             foreach (var property in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetProperties()

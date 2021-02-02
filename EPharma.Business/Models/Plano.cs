@@ -4,7 +4,8 @@ using System;
 namespace EPharma.Business.Models
 {
     public class Plano : Entity
-    {
+    {        
+       
         /// <summary>
         /// Descrição do plano
         /// </summary>
@@ -26,7 +27,7 @@ namespace EPharma.Business.Models
         public bool IsPJ { get; set; }
 
         /* EF Relations */
-        public Guid ClienteId { get; set; }
+        public Guid? ClienteId { get; set; }
         public Cliente Cliente { get; set; }
     }
 }

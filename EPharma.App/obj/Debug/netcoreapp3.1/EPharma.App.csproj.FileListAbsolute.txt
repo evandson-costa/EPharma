@@ -159,9 +159,10 @@ C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Index.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Details.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Create.cshtml.g.cs
-C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Delete.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Edit.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Details.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Create.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Edit.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Delete.cshtml.g.cs
+C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Delete.cshtml.g.cs
+C:\Users\Evandson\source\repos\EPharma\EPharma.App\bin\Debug\netcoreapp3.1\libman.json
