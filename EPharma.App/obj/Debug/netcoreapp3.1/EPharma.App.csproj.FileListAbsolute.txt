@@ -164,3 +164,4 @@ C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Details.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Create.cshtml.g.cs
 C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Edit.cshtml.g.cs
+C:\Users\Evandson\source\repos\EPharma\EPharma.App\obj\Debug\netcoreapp3.1\Razor\Views\Planos\Delete.cshtml.g.cs

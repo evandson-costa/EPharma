@@ -13,6 +13,11 @@ namespace EPharma.Business.Models
         public string Nome { get; set; }
 
         /// <summary>
+        /// Tipo cliente 1- pessoa fisica 2 - pessoa Juridica
+        /// </summary>
+        public TipoCliente TipoCliente { get; set; }
+
+        /// <summary>
         /// Cpf ou RG
         /// </summary>
         public int CpfCnpj { get; set; }

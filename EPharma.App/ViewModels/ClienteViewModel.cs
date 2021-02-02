@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,8 +17,11 @@ namespace EPharma.App.ViewModels
         /// Nome do cliente
         /// </summary>
         [Required(ErrorMessage = "O {0} é obrigatório")]
-        [Display(Name = "Nome do Usuário")]
+        [DisplayName("Nome do Usuário")]
         public string Nome { get; set; }
+
+        [DisplayName("Tipo")]
+        public int TipoCliente { get; set; }
 
         /// <summary>
         /// Cpf ou RG
@@ -34,14 +38,13 @@ namespace EPharma.App.ViewModels
         /// </summary>
         /// 
         [Required(ErrorMessage = "A {0} é obrigatório")]
-        [Display(Name = "Data de nascimento")]
+        [DisplayName("Data de nascimento")]
         public DateTime DataNascimento { get; set; }
 
         /// <summary>
         /// Telefone
         /// </summary>
         [Required]
-        [StringLength(10, MinimumLength = 11)]
         public int Telefone { get; set; }
 
         /// <summary>
