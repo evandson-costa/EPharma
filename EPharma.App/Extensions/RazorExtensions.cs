@@ -17,9 +17,10 @@ namespace EPharma.App.Extensions
             return tipoPessoa == valor ? "checked" : "";
         }
 
-        public static string FormataData(this RazorPage page, DateTime dataNascimento)
+        public static string FormataData(this RazorPage page, DateTime? dataNascimento)
         {
-            return dataNascimento.ToString("dd'/'MM'/'yyyy");
+            var data = (DateTime)dataNascimento;
+            return data == DateTime.MinValue? "" : data.ToString("dd'/'MM'/'yyyy");
         }
 
         public static string FormataTelefone(this RazorPage page, string telefone)

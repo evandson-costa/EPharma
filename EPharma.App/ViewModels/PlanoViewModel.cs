@@ -12,21 +12,21 @@ namespace EPharma.App.ViewModels
         /// <summary>
         /// Descrição do plano
         /// </summary>
-        [Required(ErrorMessage = "O nome do usuário é obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "O Nome do Plano de Saúde é obrigatório")]
         [Display(Name = "Nome do Plano de Saúde")]
         public string NomePlano { get; set; }
 
         /// <summary>
         /// Data inicio da vigência
         /// </summary>
-        [Required(ErrorMessage = "A Data Início da Vigência é obrigatória", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "A Data Início da Vigência é obrigatória")]
         [Display(Name = "Data Início da vigência")]
         public DateTime DataInicioVigencia { get; set; }
 
         /// <summary>
         /// Data fim da vigência
         /// </summary>
-        [Required(ErrorMessage = "A Data Fim da vigência é obrigatória", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "A Data Fim da vigência é obrigatória")]
         [Display(Name = "Data Fim da vigência")]
         public DateTime DataFimVigencia { get; set; }
 

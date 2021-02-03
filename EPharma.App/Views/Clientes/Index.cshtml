@@ -10,6 +10,15 @@
 <p>
     <a class="btn btn-info btn" asp-action="Create">Novo Cliente</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Filtro: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Pesquisar" class="btn btn-default" /> |
+            <a asp-action="Index" class="btn btn-default">Limpar pesquisa</a>
+        </p>
+    </div>
+</form>
 <table class="table table-hover">
     <thead class="thead-light">
         <tr>

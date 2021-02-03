@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPharma.Data.Migrations
 {
     [DbContext(typeof(EPharmaDbContext))]
-    [Migration("20210203055254_initial")]
+    [Migration("20210203184012_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,9 @@ namespace EPharma.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CpfCnpj")
-                        .HasMaxLength(14)
-                        .HasColumnType("int")
+                    b.Property<string>("CpfCnpj")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("cpf_cnpj");
 
                     b.Property<DateTime>("DataAlteracao")
@@ -58,15 +58,18 @@ namespace EPharma.Data.Migrations
                         .HasColumnType("varchar(80)")
                         .HasColumnName("nome");
 
-                    b.Property<int>("RG")
-                        .HasMaxLength(14)
-                        .HasColumnType("int")
+                    b.Property<string>("RG")
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("rg");
 
-                    b.Property<int>("Telefone")
-                        .HasMaxLength(11)
-                        .HasColumnType("int")
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("telefone");
+
+                    b.Property<int>("TipoCliente")
+                        .HasColumnType("int")
+                        .HasColumnName("tipo_cliente");
 
                     b.HasKey("Id");
 

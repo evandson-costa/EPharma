@@ -2,10 +2,9 @@
 using EPharma.Business.Interfaces;
 using EPharma.Business.Models;
 using EPharma.Data.Context;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System;
 
 namespace EPharma.Data.Repository
 {
@@ -16,19 +15,37 @@ namespace EPharma.Data.Repository
         {
         }
 
-        public async Task<IEnumerable<Plano>> ObterPlanos(TipoCliente tipoPessoa = TipoCliente.PessoaFisica)
+        public IEnumerable<Plano> ObterPlanos(TipoCliente tipoPessoa = TipoCliente.PessoaFisica)
         {
-            if(tipoPessoa.Equals(TipoCliente.PessoaJuridica))
+            if(tipoPessoa.Equals(TipoCliente.PessoaFisica))
             {
-                return await Db.Planos.AsNoTracking()
+                return  Db.Planos.AsNoTracking()
                     .OrderBy(p => p.NomePlano)
-                    .Where(c => c.IsPJ == true)
-                    .ToListAsync();
+                    .Where(c => c.IsPJ == false 
+                        && c.Deleted == false 
+                        && c.DataFimVigencia >= DateTime.Now
+                        && c.ClienteId == null)
+                    .ToList();
             }
-
-            return await Db.Planos.AsNoTracking()
+            else
+            {
+                return Db.Planos.AsNoTracking()
                    .OrderBy(p => p.NomePlano)
-                   .ToListAsync();
+                   .Where(c => c.IsPJ == true 
+                        && c.Deleted == false 
+                        && c.DataFimVigencia >= DateTime.Now
+                        && c. ClienteId == null)
+                   .ToList();
+            }            
+        }
+
+        public IEnumerable<Plano> ObterPlanosIdCliente(Guid idCliente)
+        {
+            return Db.Planos.AsNoTracking()
+                   .OrderBy(p => p.NomePlano)
+                   .Where(c=> c.Deleted == false
+                        && c.ClienteId == idCliente)
+                   .ToList();
         }
     }
 }

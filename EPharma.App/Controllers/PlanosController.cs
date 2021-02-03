@@ -5,7 +5,6 @@ using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPharma.App.Controllers
@@ -52,6 +51,7 @@ namespace EPharma.App.Controllers
         }     
 
         [HttpPost]
+        [Route("criar-plano-de-saude")]
         public async Task<IActionResult> Create(PlanoViewModel planoViewModel)
         {
            
@@ -60,12 +60,9 @@ namespace EPharma.App.Controllers
 
             await _planoRepository.Adicionar(_mapper.Map<Plano>(planoViewModel));
 
-           // if (!OperacaoValida()) return View(planoViewModel);
-
             return RedirectToAction("Index");
         }
 
-        //[ClaimsAuthorize("Produto", "Editar")]
         [Route("editar-plano-de-saude/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -80,6 +77,7 @@ namespace EPharma.App.Controllers
         }
            
         [HttpPost]
+        [Route("editar-plano-de-saude/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id, PlanoViewModel planoViewModel)
         {
             if (id != planoViewModel.Id) 
@@ -88,13 +86,9 @@ namespace EPharma.App.Controllers
             if (!ModelState.IsValid) 
                 return View(planoViewModel);
 
-            //var plano = await ObterPlano(id);
-
             planoViewModel.DataCadastro = DateTime.Now;
 
             await _planoRepository.Atualizar(_mapper.Map<Plano>(planoViewModel));
-
-            //if (!OperacaoValida()) return View(planoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -112,8 +106,7 @@ namespace EPharma.App.Controllers
             return View(plano);
         }
 
-        //[ClaimsAuthorize("Produto", "Excluir")]
-        //[Route("excluir-plano/{id:guid}")]
+        [Route("excluir-plano-de-saude/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -132,10 +125,6 @@ namespace EPharma.App.Controllers
             {
                 throw new Exception(e.Message);
             }           
-
-            //if (!OperacaoValida()) return View(plano);
-
-            TempData["Sucesso"] = "Plano excluido com sucesso!";
 
             return RedirectToAction("Index");
         }

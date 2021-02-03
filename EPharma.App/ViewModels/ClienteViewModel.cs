@@ -36,8 +36,8 @@ namespace EPharma.App.ViewModels
         /// Data de nascimento
         /// </summary>
         /// 
-        [DisplayName("Dt de Nascimento")]
-        public DateTime DataNascimento { get; set; }
+        [DisplayName("Data de Nascimento")]
+        public DateTime? DataNascimento { get; set; }
 
         /// <summary>
         /// Data de nascimento
@@ -59,7 +59,7 @@ namespace EPharma.App.ViewModels
         public string Email { get; set; }
 
         [DisplayName("Plano de Saúde")]
-        public Guid PlanoId { get; set; }
+        public Guid[] PlanoId { get; set; }
         public PlanoViewModel Plano { get; set; }
 
         public IEnumerable<PlanoViewModel> Planos { get; set; }

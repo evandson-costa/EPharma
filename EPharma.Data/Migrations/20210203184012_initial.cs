@@ -13,11 +13,12 @@ namespace EPharma.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(80)", nullable: false),
-                    cpf_cnpj = table.Column<int>(type: "int", maxLength: 14, nullable: false),
-                    rg = table.Column<int>(type: "int", maxLength: 14, nullable: true),
+                    cpf_cnpj = table.Column<string>(type: "varchar(20)", nullable: false),
+                    rg = table.Column<string>(type: "varchar(20)", nullable: true),
                     data_nascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    telefone = table.Column<int>(type: "int", maxLength: 11, nullable: false),
+                    telefone = table.Column<string>(type: "varchar(20)", nullable: false),
                     email = table.Column<string>(type: "varchar(50)", nullable: false),
+                    tipo_cliente = table.Column<int>(type: "int", nullable: false),
                     data_cadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     deleted = table.Column<bool>(type: "bit", nullable: false),
                     data_alteracao = table.Column<DateTime>(type: "datetime2", nullable: false)

@@ -7,6 +7,8 @@ namespace EPharma.Business.Interfaces
 {
     public interface IPlanoRepository : IRepository<Plano>
     {
-        Task<IEnumerable<Plano>> ObterPlanos(TipoCliente tipoPessoa);
+        IEnumerable<Plano> ObterPlanos(TipoCliente tipoPessoa);
+
+        IEnumerable<Plano> ObterPlanosIdCliente(Guid idCliente);
     }
 }

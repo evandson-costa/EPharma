@@ -3,13 +3,16 @@ using EPharma.App.ViewModels;
 using EPharma.Business.Interfaces;
 using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPharma.App.Controllers
 {
-    public class ClientesController : Controller
+    public class ClientesController : BaseController
     {
 
         private readonly IClienteRepository _clienteRepository;
@@ -27,9 +30,19 @@ namespace EPharma.App.Controllers
             _planoRepository = planoRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(_mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos()));
+            ViewData["CurrentFilter"] = searchString;
+
+            var retorno = _mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                retorno = retorno.Where(s => s.Nome.Contains(searchString)
+                    || s.CpfCnpj.Contains(searchString));
+            }
+
+            return View(retorno);
         }
 
         [Route("detalhe-de-clientes/{id:guid}")]
@@ -47,7 +60,7 @@ namespace EPharma.App.Controllers
 
         [Route("novo-de-clientes")]
         public IActionResult Create()
-        {    
+        {
             return View();
         }
 
@@ -55,15 +68,21 @@ namespace EPharma.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ClienteViewModel clienteViewModel)
         {
+
             if (!ModelState.IsValid) 
                 return View(clienteViewModel);
 
             var cliente = _mapper.Map<Cliente>(clienteViewModel);
-            cliente.DataCadastro = DateTime.Now;
+            cliente.DataCadastro = DateTime.Now;         
 
             await _clienteRepository.Adicionar(cliente);
 
-            //if (!OperacaoValida()) return View(clienteViewModel);
+            foreach (var item in clienteViewModel.PlanoId)
+            {
+                var plano = _planoRepository.ObterPorId(item).Result;
+                plano.Cliente = cliente;
+                await _planoRepository.Atualizar(plano);
+            }           
 
             return RedirectToAction("Index");
         }
@@ -93,8 +112,6 @@ namespace EPharma.App.Controllers
 
             await _clienteRepository.Atualizar(cliente);
 
-           // if (!OperacaoValida()) return View(await ObterFornecedorProdutosEndereco(id));
-
             return RedirectToAction("Index");
         }
 
@@ -120,10 +137,27 @@ namespace EPharma.App.Controllers
             if (cliente == null)
                 return NotFound();
 
+            var planos = _planoRepository.ObterPlanosIdCliente(id);    
+
             await _clienteRepository.Remover(_mapper.Map<Cliente>(cliente));
 
+            foreach (var item in planos)
+            {
+                item.ClienteId = null;
+                await _planoRepository.Atualizar(item);
+            }
+
             return RedirectToAction("Index");
+        }       
+
+        [Route("getPlanos")]
+        [HttpGet]
+        public IActionResult GetPlanos()
+        {
+            var id = Request.Query["handler"];
+            return Json(_planoRepository.ObterPlanos((TipoCliente)Convert.ToInt32(id))); ;
         }
+
 
         private async Task<ClienteViewModel> ObterClientePorId(Guid id)
         {
