@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EPharma.App.ViewModels
 {
@@ -26,6 +24,7 @@ namespace EPharma.App.ViewModels
         /// <summary>
         /// Cpf ou RG
         /// </summary>
+        [DisplayName("CPF/CNPJ")]
         public int CpfCnpj { get; set; }
 
         /// <summary>
@@ -37,20 +36,25 @@ namespace EPharma.App.ViewModels
         /// Data de nascimento
         /// </summary>
         /// 
-        [Required(ErrorMessage = "A {0} é obrigatório")]
-        [DisplayName("Data de nascimento")]
+        [DisplayName("Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
+
+        /// <summary>
+        /// Data de nascimento
+        /// </summary>     
+        [DisplayName("Data de Cadastro")]
+        public DateTime DataCadastro { get; set; }
 
         /// <summary>
         /// Telefone
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "O {0} é obrigatório")]
         public int Telefone { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        [Required(ErrorMessage = "Informe o seu email")]
+        [Required(ErrorMessage = "Informe o seu Email")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido...")]
         public string Email { get; set; }
 

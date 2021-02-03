@@ -19,4 +19,8 @@
     <ProjectReference Include="..\EPharma.Business\EPharma.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

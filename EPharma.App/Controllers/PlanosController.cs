@@ -90,6 +90,8 @@ namespace EPharma.App.Controllers
 
             //var plano = await ObterPlano(id);
 
+            planoViewModel.DataCadastro = DateTime.Now;
+
             await _planoRepository.Atualizar(_mapper.Map<Plano>(planoViewModel));
 
             //if (!OperacaoValida()) return View(planoViewModel);
@@ -116,18 +118,25 @@ namespace EPharma.App.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var plano = await ObterPlano(id);
-
-            if (plano == null)
+            try
             {
-                return NotFound();
-            }
+                var plano = await ObterPlano(id);
 
-            await _planoRepository.Remover(id);
+                if (plano == null)
+                {
+                    return NotFound();
+                }
+               
+                await _planoRepository.Remover(_mapper.Map<Plano>(plano));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }           
 
             //if (!OperacaoValida()) return View(plano);
 
-            TempData["Sucesso"] = "Produto excluido com sucesso!";
+            TempData["Sucesso"] = "Plano excluido com sucesso!";
 
             return RedirectToAction("Index");
         }

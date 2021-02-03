@@ -31,29 +31,42 @@ namespace EPharma.Data.Repository
 
         public virtual async Task<T> ObterPorId(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c=>c.Id == id);
         }
 
         public virtual async Task<List<T>> ObterTodos()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet
+                .AsNoTracking()
+                .Where(c=>c.Deleted == false)
+                .ToListAsync();
         }
 
         public virtual async Task Adicionar(T entity)
         {
+            entity.DataCadastro = DateTime.Now;
+            entity.Deleted = false;
+
             DbSet.Add(entity);
             await SaveChanges();
         }
 
         public virtual async Task Atualizar(T entity)
         {
+            entity.DataAlteracao = DateTime.Now;
+
             DbSet.Update(entity);
             await SaveChanges();
         }
 
-        public virtual async Task Remover(Guid id)
+        public virtual async Task Remover(T entity)
         {
-            DbSet.Remove(new T { Id = id }); ;
+            entity.Deleted = true;
+            entity.DataAlteracao = DateTime.Now;
+
+            DbSet.Update(entity);
             await SaveChanges();
         }
 

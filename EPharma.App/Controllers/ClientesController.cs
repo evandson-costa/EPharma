@@ -3,7 +3,6 @@ using EPharma.App.ViewModels;
 using EPharma.Business.Interfaces;
 using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace EPharma.App.Controllers
             return View(await ObterClientePorId(id));
         }
      
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {    
             return View();
         }
@@ -51,6 +50,7 @@ namespace EPharma.App.Controllers
                 return View(clienteViewModel);
 
             var cliente = _mapper.Map<Cliente>(clienteViewModel);
+            cliente.DataCadastro = DateTime.Now;
 
             await _clienteRepository.Adicionar(cliente);
 
@@ -79,7 +79,8 @@ namespace EPharma.App.Controllers
             if (!ModelState.IsValid) return View(clienteViewModel);
 
             var cliente = _mapper.Map<Cliente>(clienteViewModel);
-           // await _clienteService.Atualizar(fornecedor);
+
+            await _clienteRepository.Atualizar(cliente);
 
            // if (!OperacaoValida()) return View(await ObterFornecedorProdutosEndereco(id));
 
@@ -101,11 +102,12 @@ namespace EPharma.App.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var fornecedor = await ObterClientePorId(id);
+            var cliente = await ObterClientePorId(id);
 
-            if (fornecedor == null) return NotFound();
+            if (cliente == null)
+                return NotFound();
 
-            await _clienteRepository.Remover(id);
+            await _clienteRepository.Remover(_mapper.Map<Cliente>(cliente));
 
             return RedirectToAction("Index");
         }

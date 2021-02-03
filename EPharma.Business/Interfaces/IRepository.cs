@@ -16,7 +16,7 @@ namespace EPharma.Business.Interfaces
 
         Task Atualizar(T obj);
 
-        Task Remover(Guid id);
+        Task Remover(T entity);
 
         Task<IEnumerable<T>> Buscar(Expression<Func<T, bool>> predicate);
 

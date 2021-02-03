@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace EPharma.App.ViewModels
@@ -33,7 +34,13 @@ namespace EPharma.App.ViewModels
         /// Permite pessoa jurídica
         /// </summary>
         [Display(Name = "Permite Pessoa Jurídica")]
-        public bool IsPJ { get; set; }   
+        public bool IsPJ { get; set; }
+
+        /// <summary>
+        /// Data de nascimento
+        /// </summary>     
+        [DisplayName("Data de Cadastro")]
+        public DateTime DataCadastro { get; set; }
 
     }
 }

@@ -16,12 +16,7 @@ namespace EPharma.Business.Models
         /// <summary>
         /// Nome do cliente
         /// </summary>
-        public string Nome { get; set; }
-
-        /// <summary>
-        /// Tipo cliente 1- pessoa fisica 2 - pessoa Juridica
-        /// </summary>
-        public TipoCliente TipoCliente { get; set; }
+        public string Nome { get; set; }       
 
         /// <summary>
         /// Cpf ou RG
@@ -46,9 +41,7 @@ namespace EPharma.Business.Models
         /// <summary>
         /// Email
         /// </summary>
-        public string Email { get; set; }  
-        
-
+        public string Email { get; set; }         
 
         ///* EF Relations */
         public IEnumerable<Plano> Planos { get; set; }

@@ -15,5 +15,15 @@ namespace EPharma.Business.Models
         /// Data do cadastro
         /// </summary>
         public DateTime DataCadastro { get; set; }
+
+        /// <summary>
+        /// Deletado
+        /// </summary>
+        public bool Deleted { get; set; }
+
+        /// <summary>
+        /// Deletado
+        /// </summary>
+        public DateTime DataAlteracao { get; set; }
     }
 }

@@ -13,13 +13,14 @@ namespace EPharma.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(80)", nullable: false),
-                    TipoCliente = table.Column<int>(type: "int", nullable: false),
-                    CpfCnpj = table.Column<int>(type: "int", maxLength: 14, nullable: false),
-                    RG = table.Column<int>(type: "int", nullable: false),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Telefone = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Email = table.Column<string>(type: "varchar(50)", nullable: false),
-                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    cpf_cnpj = table.Column<int>(type: "int", maxLength: 14, nullable: false),
+                    rg = table.Column<int>(type: "int", maxLength: 14, nullable: true),
+                    data_nascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    telefone = table.Column<int>(type: "int", maxLength: 11, nullable: false),
+                    email = table.Column<string>(type: "varchar(50)", nullable: false),
+                    data_cadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    deleted = table.Column<bool>(type: "bit", nullable: false),
+                    data_alteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,12 +32,14 @@ namespace EPharma.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    nome = table.Column<string>(type: "varchar(50)", nullable: false),
-                    DataInicioVigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataFimVigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsPJ = table.Column<bool>(type: "bit", nullable: false),
+                    nome = table.Column<string>(type: "varchar(100)", nullable: false),
+                    data_inicio_vigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    data_fim_vigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    isPj = table.Column<bool>(type: "bit", nullable: false),
                     ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    data_cadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    deleted = table.Column<bool>(type: "bit", nullable: false),
+                    data_alteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -15,7 +15,7 @@
                 <label asp-for="NomePlano" class="control-label"></label>
                 <input asp-for="NomePlano" class="form-control" />
                 <span asp-validation-for="NomePlano" class="text-danger"></span>
-            </div>         
+            </div>
             <div class="row">
                 <div class="col">
                     <label asp-for="DataInicioVigencia" class="control-label"></label>
@@ -28,6 +28,16 @@
                     <span asp-validation-for="DataFimVigencia" class="text-danger"></span>
                 </div>
             </div>
+            <div class="form-group" style="padding-top:15px">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DataCadastro)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DataCadastro)
+                    </dd>
+                </dl>
+            </div>
             <div style="padding-top:10px">
                 <div class="form-group form-check">
                     <label class="form-check-label">
@@ -35,7 +45,7 @@
                     </label>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
                 <a class=" btn btn-info" href="javascript:window.history.back()">Voltar</a>

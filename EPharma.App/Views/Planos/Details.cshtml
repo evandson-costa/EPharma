@@ -31,10 +31,24 @@
                         @Html.DisplayFor(model => model.DataFimVigencia)
                     </dd>
                     <dt>
+                        @Html.DisplayNameFor(model => model.DataCadastro)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DataCadastro)
+                    </dd>
+                    <dt>
                         @Html.DisplayNameFor(model => model.IsPJ)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.IsPJ)
+                        @if (Model.IsPJ)
+                        {
+                            <span>Sim</span>
+                        }
+                        else
+                        {
+                            <span>Não</span>
+
+                        }
                     </dd>
                 </dl>
             </div>

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EPharma.Data.Migrations
 {
     [DbContext(typeof(EPharmaDbContext))]
-    [Migration("20210202224558_initial")]
+    [Migration("20210203055254_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,17 +29,29 @@ namespace EPharma.Data.Migrations
 
                     b.Property<int>("CpfCnpj")
                         .HasMaxLength(14)
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("cpf_cnpj");
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_alteracao");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_cadastro");
 
                     b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_nascimento");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("deleted");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("email");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -47,14 +59,14 @@ namespace EPharma.Data.Migrations
                         .HasColumnName("nome");
 
                     b.Property<int>("RG")
-                        .HasColumnType("int");
+                        .HasMaxLength(14)
+                        .HasColumnType("int")
+                        .HasColumnName("rg");
 
                     b.Property<int>("Telefone")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoCliente")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("telefone");
 
                     b.HasKey("Id");
 
@@ -70,21 +82,33 @@ namespace EPharma.Data.Migrations
                     b.Property<Guid?>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_alteracao");
+
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_cadastro");
 
                     b.Property<DateTime>("DataFimVigencia")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_fim_vigencia");
 
                     b.Property<DateTime>("DataInicioVigencia")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("data_inicio_vigencia");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("deleted");
 
                     b.Property<bool>("IsPJ")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("isPj");
 
                     b.Property<string>("NomePlano")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("nome");
 
                     b.HasKey("Id");
