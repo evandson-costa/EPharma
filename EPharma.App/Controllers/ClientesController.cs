@@ -5,7 +5,6 @@ using EPharma.Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPharma.App.Controllers
@@ -33,16 +32,26 @@ namespace EPharma.App.Controllers
             return View(_mapper.Map<IEnumerable<ClienteViewModel>>(await _clienteRepository.ObterTodos()));
         }
 
+        [Route("detalhe-de-clientes/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
-            return View(await ObterClientePorId(id));
+            var clientesviewModel = await ObterClientePlanosPorId(id);
+
+            if (clientesviewModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(clientesviewModel);
         }
-     
+
+        [Route("novo-de-clientes")]
         public IActionResult Create()
         {    
             return View();
         }
 
+        [Route("novo-de-clientes")]
         [HttpPost]
         public async Task<IActionResult> Create(ClienteViewModel clienteViewModel)
         {
@@ -59,6 +68,7 @@ namespace EPharma.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("editar-de-cliente/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var clienteViewModel = await ObterClientePorId(id);
@@ -71,6 +81,7 @@ namespace EPharma.App.Controllers
             return View(clienteViewModel);
         }
 
+        [Route("editar-de-cliente/{id:guid}")]
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ClienteViewModel clienteViewModel)
         {
@@ -87,6 +98,7 @@ namespace EPharma.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("excluir-de-cliente/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var clienteViewModel = await ObterClientePorId(id);
@@ -99,6 +111,7 @@ namespace EPharma.App.Controllers
             return View(clienteViewModel);
         }
 
+        [Route("excluir-de-cliente/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -117,11 +130,9 @@ namespace EPharma.App.Controllers
             return _mapper.Map<ClienteViewModel>(await _clienteRepository.ObterPorId(id));
         }
 
-        private async Task<ClienteViewModel> PopularPlanos(ClienteViewModel cliente)
+        private async Task<ClienteViewModel> ObterClientePlanosPorId(Guid id)
         {
-            cliente.Planos = _mapper.Map<IEnumerable<PlanoViewModel>>(await _planoRepository.ObterPlanos((TipoCliente)cliente.TipoCliente));
-
-            return cliente;
+            return _mapper.Map<ClienteViewModel>(await _clienteRepository.ObterClientesPlanos(id));
         }
     }
 }

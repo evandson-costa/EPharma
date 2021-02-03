@@ -1,0 +1,40 @@
+﻿@model EPharma.App.ViewModels.ClienteViewModel
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plano.NomePlano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plano.DataInicioVigencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plano.DataFimVigencia)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Planos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomePlano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicioVigencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFimVigencia)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

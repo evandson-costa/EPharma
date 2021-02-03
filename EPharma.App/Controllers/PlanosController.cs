@@ -32,6 +32,7 @@ namespace EPharma.App.Controllers
             return View(_mapper.Map<IEnumerable<PlanoViewModel>>(await _planoRepository.ObterTodos()));
         }
 
+        [Route("detalhe-do-plano-de-saude/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
             var planoViewModel = await ObterPlano(id);
@@ -44,6 +45,7 @@ namespace EPharma.App.Controllers
             return View(planoViewModel);
         }
 
+        [Route("criar-plano-de-saude")]
         public IActionResult Create()
         {
             return View();
@@ -64,7 +66,7 @@ namespace EPharma.App.Controllers
         }
 
         //[ClaimsAuthorize("Produto", "Editar")]
-       // [Route("editar-plano/{id:guid}")]
+        [Route("editar-plano-de-saude/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var planoViewModel = await ObterPlano(id);
@@ -76,9 +78,7 @@ namespace EPharma.App.Controllers
 
             return View(planoViewModel);
         }
-
-       // [ClaimsAuthorize("Produto", "Editar")]
-       // [Route("editar-plano/{id:guid}")]
+           
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, PlanoViewModel planoViewModel)
         {
@@ -98,9 +98,8 @@ namespace EPharma.App.Controllers
 
             return RedirectToAction("Index");
         }
-
-        //[ClaimsAuthorize("Produto", "Excluir")]
-        //[Route("excluir-plano/{id:guid}")]
+                
+        [Route("excluir-plano-de-saude/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var plano = await ObterPlano(id);
