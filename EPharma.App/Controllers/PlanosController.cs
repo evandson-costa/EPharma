@@ -82,13 +82,15 @@ namespace EPharma.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, PlanoViewModel planoViewModel)
         {
-            if (id != planoViewModel.Id) return NotFound();
-
-            var plano = await ObterPlano(id);       
+            if (id != planoViewModel.Id) 
+                return NotFound();
+            
             if (!ModelState.IsValid) 
-                return View(planoViewModel);   
+                return View(planoViewModel);
 
-            //await _planoService.Atualizar(_mapper.Map<Produto>(planoAtualizacao));
+            //var plano = await ObterPlano(id);
+
+            await _planoRepository.Atualizar(_mapper.Map<Plano>(planoViewModel));
 
             //if (!OperacaoValida()) return View(planoViewModel);
 
@@ -121,7 +123,7 @@ namespace EPharma.App.Controllers
                 return NotFound();
             }
 
-            //await _planoService.Remover(id);
+            await _planoRepository.Remover(id);
 
             //if (!OperacaoValida()) return View(plano);
 

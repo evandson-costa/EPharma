@@ -51,6 +51,7 @@ namespace EPharma.App.Controllers
                 return View(clienteViewModel);
 
             var cliente = _mapper.Map<Cliente>(clienteViewModel);
+
             await _clienteRepository.Adicionar(cliente);
 
             //if (!OperacaoValida()) return View(clienteViewModel);

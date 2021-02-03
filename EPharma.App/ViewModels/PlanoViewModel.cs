@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EPharma.App.ViewModels
 {
@@ -16,7 +12,7 @@ namespace EPharma.App.ViewModels
         /// Descrição do plano
         /// </summary>
         [Required(ErrorMessage = "O nome do usuário é obrigatório", AllowEmptyStrings = false)]
-        [Display(Name = "Nome do Plano")]
+        [Display(Name = "Nome do Plano de Saúde")]
         public string NomePlano { get; set; }
 
         /// <summary>
@@ -30,7 +26,7 @@ namespace EPharma.App.ViewModels
         /// Data fim da vigência
         /// </summary>
         [Required(ErrorMessage = "A Data Fim da vigência é obrigatória", AllowEmptyStrings = false)]
-        [Display(Name = "Data Início da vigência")]
+        [Display(Name = "Data Fim da vigência")]
         public DateTime DataFimVigencia { get; set; }
 
         /// <summary>

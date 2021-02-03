@@ -46,7 +46,9 @@ namespace EPharma.Business.Models
         /// <summary>
         /// Email
         /// </summary>
-        public string Email { get; set; }        
+        public string Email { get; set; }  
+        
+
 
         ///* EF Relations */
         public IEnumerable<Plano> Planos { get; set; }
