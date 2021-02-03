@@ -1,4 +1,5 @@
 ﻿@model EPharma.App.ViewModels.PlanoViewModel
+@using EPharma.App.Extensions
 
 @{
     ViewData["Title"] = "Detalhe do Plano de Saúde - " + Model.NomePlano;
@@ -22,19 +23,19 @@
                         @Html.DisplayNameFor(model => model.DataInicioVigencia)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.DataInicioVigencia)
+                        @this.FormataData(Model.DataInicioVigencia)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.DataFimVigencia)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.DataFimVigencia)
+                        @this.FormataData(Model.DataFimVigencia)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.DataCadastro)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.DataCadastro)
+                        @this.FormataData(Model.DataCadastro)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.IsPJ)

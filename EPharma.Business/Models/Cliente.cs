@@ -21,12 +21,12 @@ namespace EPharma.Business.Models
         /// <summary>
         /// Cpf ou RG
         /// </summary>
-        public int CpfCnpj { get; set; }
+        public string CpfCnpj { get; set; }
 
         /// <summary>
         /// RG
         /// </summary>
-        public int RG { get; set; }
+        public string RG { get; set; }
 
         /// <summary>
         /// Data de nascimento
@@ -36,12 +36,17 @@ namespace EPharma.Business.Models
         /// <summary>
         /// Telefone
         /// </summary>
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        public string Email { get; set; }         
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Tipo cliente
+        /// </summary>
+        public int TipoCliente { get; set; }
 
         ///* EF Relations */
         public IEnumerable<Plano> Planos { get; set; }

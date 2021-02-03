@@ -87,7 +87,7 @@ namespace EPharma.App
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Clientes}/{action=Index}/{id?}");
             });
 
             var defaultCulture = new CultureInfo("pt-BR");

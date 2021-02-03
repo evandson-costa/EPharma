@@ -15,7 +15,7 @@ namespace EPharma.App.ViewModels
         /// Nome do cliente
         /// </summary>
         [Required(ErrorMessage = "O {0} é obrigatório")]
-        [DisplayName("Nome do Usuário")]
+        [DisplayName("Cliente")]
         public string Nome { get; set; }
 
         [DisplayName("Tipo")]
@@ -25,18 +25,18 @@ namespace EPharma.App.ViewModels
         /// Cpf ou RG
         /// </summary>
         [DisplayName("CPF/CNPJ")]
-        public int CpfCnpj { get; set; }
+        public string CpfCnpj { get; set; }
 
         /// <summary>
         /// RG
         /// </summary>
-        public int RG { get; set; }
+        public string RG { get; set; }
 
         /// <summary>
         /// Data de nascimento
         /// </summary>
         /// 
-        [DisplayName("Data de Nascimento")]
+        [DisplayName("Dt de Nascimento")]
         public DateTime DataNascimento { get; set; }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace EPharma.App.ViewModels
         /// Telefone
         /// </summary>
         [Required(ErrorMessage = "O {0} é obrigatório")]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         /// <summary>
         /// Email

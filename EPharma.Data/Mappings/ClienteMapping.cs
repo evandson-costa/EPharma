@@ -23,7 +23,7 @@ namespace EPharma.Data.Mappings
 
             builder.Property(p => p.Telefone)
                 .IsRequired()
-                .HasMaxLength(11)
+                .HasColumnType("varchar(20)")
                 .HasColumnName("telefone");
 
             builder.Property(p => p.DataCadastro)
@@ -32,11 +32,11 @@ namespace EPharma.Data.Mappings
 
             builder.Property(p => p.CpfCnpj)
                 .IsRequired()
-                .HasMaxLength(14)
+                .HasColumnType("varchar(20)")
                 .HasColumnName("cpf_cnpj");
 
             builder.Property(p => p.RG)
-                .HasMaxLength(14)
+                .HasColumnType("varchar(20)")
                 .HasColumnName("rg");
 
             builder.Property(p => p.DataNascimento)
@@ -50,6 +50,9 @@ namespace EPharma.Data.Mappings
 
             builder.Property(p => p.DataAlteracao)
                 .HasColumnName("data_alteracao");
+
+            builder.Property(p => p.TipoCliente)
+                .HasColumnName("tipo_cliente");
         }
     }
 }

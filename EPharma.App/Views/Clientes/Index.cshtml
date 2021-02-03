@@ -1,32 +1,27 @@
-﻿@model IEnumerable<EPharma.App.ViewModels.ClienteViewModel>
+﻿@using EPharma.App.Extensions
+@model IEnumerable<EPharma.App.ViewModels.ClienteViewModel>
 
 @{
     ViewData["Title"] = "Lista de Clientes";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h4>@ViewData["Title"]</h4>
 
 <p>
-    <a class="btn btn-info" asp-action="Create">Novo Cliente</a>
+    <a class="btn btn-info btn" asp-action="Create">Novo Cliente</a>
 </p>
 <table class="table table-hover">
     <thead class="thead-light">
-        <tr>            
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CpfCnpj)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RG)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -34,32 +29,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>        
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CpfCnpj)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RG)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td class="text-right">
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
-                <a class="btn btn-warning" supress-by-claim-name="Cliente" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
-                <a class="btn btn-danger" supress-by-claim-name="Cliente" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @this.FormataDocumento(item.TipoCliente, item.CpfCnpj)
+                </td>               
+                <td>
+                    @this.FormataData(item.DataNascimento)
+                </td>             
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" supress-by-claim-name="Cliente" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
+                    <a class="btn btn-danger" supress-by-claim-name="Cliente" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

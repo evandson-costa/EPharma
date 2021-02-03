@@ -61,7 +61,7 @@ namespace EPharma.App.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var clienteViewModel = await _clienteRepository.ObterPorId(id);
+            var clienteViewModel = await ObterClientePorId(id);
 
             if (clienteViewModel == null)
             {

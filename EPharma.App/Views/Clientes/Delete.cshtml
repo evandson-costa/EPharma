@@ -1,4 +1,5 @@
 ﻿@model EPharma.App.ViewModels.ClienteViewModel
+@using EPharma.App.Extensions
 
 @{
     ViewData["Title"] = "Tem certeza que deseja deletar - " + Model.Nome + "?";
@@ -34,7 +35,7 @@
                         @Html.DisplayNameFor(model => model.CpfCnpj)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.CpfCnpj)
+                        @this.FormataDocumento(Model.TipoCliente,Model.CpfCnpj)
                     </dd>
                     @if (Model.TipoCliente == 1)
                     {
@@ -49,13 +50,13 @@
                         @Html.DisplayNameFor(model => model.DataNascimento)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.DataNascimento)
+                        @this.FormataData(Model.DataNascimento)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.Telefone)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Telefone)
+                        @this.FormataTelefone(Model.Telefone)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -66,8 +67,8 @@
                 </dl>
 
                 <form asp-action="Delete">
-                    <input type="submit" value="Delete" class="btn btn-danger" /> |
-                    <a asp-action="Index">Back to List</a>
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
                 </form>
             </div>
         </div>
